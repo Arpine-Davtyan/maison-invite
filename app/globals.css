@@ -1,26 +1,156 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --ivory-light: #fdfbf7;
+  --ivory: #f8f3ea;
+  --ink: #1f1c19;
+  --dark-wenge: #3B3630;
+  --wenge: #6b6257;
+  --gold: #ab8a1c;
+  --beige: #efe6d6;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-ivory-light: var(--ivory-light);
+  --color-ivory: var(--ivory);
+  --color-ink: var(--ink);
+  --color-wenge: var(--wenge);
+  --color-dark-wenge: var(--dark-wenge);
+  --color-gold: var(--gold);
+  --color-beige: var(--beige);
+  
+  --font-cormorant-garamond: var(--font-cormorant-garamond);
+  --font-jost: var(--font-jost);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@utility flex-center {
+  @apply flex items-center justify-center;
+}
+
+@utility flex-col-center {
+  @apply flex flex-col items-center justify-center;
+}
+
+@utility section {
+  @apply max-w-screen flex flex-col px-6 py-12 gap-3;
+}
+
+@utility container {
+  @apply max-w-7xl w-full mx-auto flex px-4;
+}
+
+@utility btn-dark {
+  @apply flex px-5 py-4 bg-ink text-ivory text-xs font-semibold tracking-[2px] uppercase duration-300 hover:text-ivory hover:bg-dark-wenge;
+}
+
+@utility btn-light {
+  @apply flex items-center px-5 py-3 bg-ivory text-ink text-xs border border-gold font-semibold tracking-[2px] uppercase duration-300 hover:text-ivory hover:bg-dark-wenge;
+}
+
+@utility btn-submit {
+  @apply h-10 w-full cursor-pointer bg-wenge px-4 text-xs tracking-[3px] uppercase text-white transition hover:bg-gold duration-300;
+}
+
+@utility form-label {
+  @apply mb-2 text-xs font-medium uppercase tracking-[2px] text-wenge;
+}
+
+@utility form-input {
+  @apply h-9 w-full border border-wenge/35 bg-white px-3 py-2 text-xs text-ink outline-none transition focus:border-gold focus:ring-1 focus:ring-ink/10;
+}
+
+@utility form-textarea {
+  @apply min-h-15 w-full resize-y border border-wenge/35 bg-white px-3 py-2 text-xs leading-normal text-ink placeholder:text-wenge outline-none transition focus:border-gold focus:ring-1 focus:ring-ink/10
+}
+
+@layer base {
+  header {
+    @apply fixed bg-ivory-light top-0 w-full h-15 max-w-screen flex justify-between items-center px-4 z-40;
   }
+
+  main {
+    @apply mt-15;
+  }
+
+  nav a {
+    @apply text-xs text-wenge font-semibold tracking-[2px] uppercase hover:text-ink duration-300;
+  }
+
+  h1 {
+    @apply max-w-200 text-6xl text-ink justify-center text-center font-cormorant-garamond;
+  }
+
+  h2 {
+    @apply text-4xl text-ink font-cormorant-garamond;
+  }
+
+  h3 {
+    @apply text-xl text-ink font-cormorant-garamond;
+  }
+  
+  h5 {
+    @apply text-lg font-cormorant-garamond;
+  }
+  
+  h6 {
+    @apply text-xs text-gold uppercase font-semibold tracking-[3px];
+  }
+
+  footer {
+    @apply bg-ivory py-10;
+  } 
+}
+
+@layer components {
+  .hero {
+    @apply section justify-center items-center bg-ivory min-h-140 gap-6;
+  }
+
+  .simple-text {
+    @apply text-[16px] text-wenge max-w-xl text-center;
+  }
+
+  .title-box {
+    @apply flex items-center justify-between my-4 gap-8;
+  }
+
+  .rule-gold {
+    @apply h-0.5 bg-linear-to-r from-transparent via-gold to-transparent hidden flex-1 sm:block;
+  }
+
+  .collection-content {
+    @apply grid grid-cols-1 sm:grid-cols-3 gap-x-3 gap-y-10 mt-3;
+  }
+
+  .collection-card {
+    @apply box-border border border-beige duration-300 hover:border-gold;
+  }
+
+  .collection-preview {
+    @apply w-full relative h-125 border border-gold overflow-hidden;
+  }
+
+  .card-description {
+    @apply text-sm text-wenge mt-0.5;
+  }
+
+  .price {
+    @apply text-lg text-gold font-cormorant-garamond;
+  }
+
+
+
+
+
+
+
+
+
+  
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--ivory-light);
+  color: var(--ink);
+  font-family: var(--jost);
 }
