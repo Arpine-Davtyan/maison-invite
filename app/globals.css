@@ -36,11 +36,11 @@
 }
 
 @utility container {
-  @apply max-w-7xl w-full mx-auto flex px-4;
+  @apply max-w-7xl w-full mx-auto flex;
 }
 
 @utility btn-dark {
-  @apply flex px-5 py-4 bg-ink text-ivory text-xs font-semibold tracking-[2px] uppercase duration-300 hover:text-ivory hover:bg-dark-wenge;
+  @apply flex px-5 py-4 bg-ink text-ivory text-xs font-semibold tracking-[2px] uppercase duration-300 hover:text-ivory hover:bg-dark-wenge cursor-pointer;
 }
 
 @utility btn-light {
@@ -72,8 +72,8 @@
     @apply mt-15;
   }
 
-  nav a {
-    @apply text-xs text-wenge font-semibold tracking-[2px] uppercase hover:text-ink duration-300;
+  nav span {
+    @apply cursor-pointer text-xs text-wenge font-semibold tracking-[2px] uppercase hover:text-ink duration-300;
   }
 
   h1 {

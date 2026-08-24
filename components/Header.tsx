@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { scrollCollection } from "../lib/actions/scroll";
 
 const Header = () => {
     return (
@@ -9,20 +12,21 @@ const Header = () => {
                     href="/"
                 >
                     <Image
-                        src="/images/logo.png"
+                        src="/images/logo-nav.png"
                         alt="logo"
                         width={130}
-                        height={50}
+                        height={30}
                         quality={100}
                         loading="eager"
+                        className="h-auto"
                     />
                 </Link>
                 <nav>
-                    <Link
-                        href="/#collection"
+                    <span
+                        onClick={scrollCollection}
                     >
                         Collection
-                    </Link>
+                    </span>
                 </nav>
             </div>
         </header>

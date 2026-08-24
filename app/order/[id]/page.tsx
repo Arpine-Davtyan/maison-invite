@@ -58,11 +58,6 @@ const Order = async ({ params }: OrderPageProps) => {
                         </p>
 
                         <OrderForm templateId={item.id} />
-
-                        <p className="simple-text text-left">
-                            No payment is taken here yet — we confirm details
-                            by email first.
-                        </p>
                     </div>
                 </div>
             </div>
