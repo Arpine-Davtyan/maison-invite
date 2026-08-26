@@ -5,14 +5,16 @@ import { scrollCollection } from '@/lib/actions/scroll';
 const Hero = () => {
     return (
         <div className='hero'>
-            <h6>Digital invitation atelier</h6>
-            <h1>Invitations that live at a link, <span className='text-gold italic'>not in a drawer</span></h1>
-            <p className='simple-text'>Browse the collection by occasion, open the demo, and send your own version the same day — no printing, no post office.</p>
+            <h6>Թվաային Հրավիրատոմսեր</h6>
+            <h1>Ձեր օրը՝ <span className='text-gold italic'>մեկ գեղեցիկ հղումով</span></h1>
+            <p className='simple-text'>
+                Ընտրեք հրավիրատոմսը, լրացրեք ձեր տվյալները և ստացեք այն պատրաստ՝ կիսվելու համար։
+            </p>
             <button 
                 onClick={scrollCollection}
                 className="btn-dark"
             >
-                Browse the collection
+                Դիտել Հրավիրատոմսեր
             </button>
         </div>
     )

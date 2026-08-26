@@ -27,7 +27,7 @@ const CollectionCard = ({ item }: CollectionCardProps) => {
 
             <div className="flex justify-end items-center p-3">
                 <span className="price">
-                    {item.price} ֏
+                    {Number(item.price).toLocaleString("hy-AM")} ֏
                 </span>
             </div>
         </div>

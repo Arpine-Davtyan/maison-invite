@@ -25,7 +25,7 @@ const Header = () => {
                     <span
                         onClick={scrollCollection}
                     >
-                        Collection
+                        Հրավիրատոմսեր
                     </span>
                 </nav>
             </div>

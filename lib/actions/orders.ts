@@ -29,6 +29,9 @@ export type CreateOrderInput = {
     phone?: string;
     date: string;
     email?: string;
+    note?: string;
+    location?: string;
+    invitationNames?: string;
 };
 
 export type UpdateOrderInput = Partial<CreateOrderInput>;
@@ -42,6 +45,9 @@ export async function createOrder(data: CreateOrderInput) {
             phone: data.phone ?? null,
             date: data.date,
             email: data.email ?? null,
+            note: data.note ?? null,
+            location: data.location ?? null,
+            invitationNames: data.invitationNames ?? null,
         })
         .select()
         .single();

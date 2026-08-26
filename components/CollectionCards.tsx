@@ -28,7 +28,7 @@ const CollectionCards = async () => {
 
                         <div className="flex justify-end py-3">
                             <span className="price">
-                                {item.price} ֏
+                                {Number(item.price).toLocaleString("hy-AM")} ֏
                             </span>
                         </div>
                     </div>
@@ -39,14 +39,14 @@ const CollectionCards = async () => {
                             target="_blank"
                             className="btn-light"
                         >
-                            View Demo
+                            Դիտել
                         </Link>
 
                         <Link
                             href={`/order/${item.id}`}
                             className="btn-dark"
                         >
-                            Order Now
+                            Պատվիրել
                         </Link>
                     </div>
                 </div>

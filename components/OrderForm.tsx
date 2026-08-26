@@ -10,10 +10,11 @@ interface OrderFormProps {
 const OrderForm = ({ templateId }: OrderFormProps) => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
+    const [phone, setPhone] = useState("");
     const [invitationNames, setInvitationNames] = useState("");
     const [eventDate, setEventDate] = useState("");
-    const [venue, setVenue] = useState("");
-    const [notes, setNotes] = useState("");
+    const [location, setLocation] = useState("");
+    const [note, setNote] = useState("");
 
     const [isPending, startTransition] = useTransition();
     const [success, setSuccess] = useState(false);
@@ -30,7 +31,11 @@ const OrderForm = ({ templateId }: OrderFormProps) => {
                     template_id: templateId,
                     full_name: name,
                     email,
+                    phone,
                     date: eventDate,
+                    location,
+                    invitationNames,
+                    note
                 });
 
                 setSuccess(true);
@@ -91,6 +96,47 @@ const OrderForm = ({ templateId }: OrderFormProps) => {
                         />
                     </div>
 
+                    {/* Event date */}
+                    <div className="flex flex-col">
+                        <label
+                            htmlFor="eventDate"
+                            className="form-label"
+                        >
+                            Event date
+                        </label>
+
+                        <input
+                            id="eventDate"
+                            type="date"
+                            value={eventDate}
+                            onChange={(e) => setEventDate(e.target.value)}
+                            className="form-input"
+                            required
+                            disabled={isPending}
+                        />
+                    </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-3">
+                    {/* Phone */}
+                    <div className="flex flex-col">
+                        <label
+                            htmlFor="phone"
+                            className="form-label"
+                        >
+                            Phone
+                        </label>
+
+                        <input
+                            id="phone"
+                            type="tel"
+                            value={phone}
+                            onChange={(e) => setPhone(e.target.value)}
+                            className="form-input"
+                            required
+                            disabled={isPending}
+                        />
+                    </div>
                     <div className="flex flex-col">
                         <label
                             htmlFor="email"
@@ -134,42 +180,23 @@ const OrderForm = ({ templateId }: OrderFormProps) => {
                     />
                 </div>
 
-                {/* Event date + venue */}
-                <div className="flex flex-col">
-                    <label
-                        htmlFor="eventDate"
-                        className="form-label"
-                    >
-                        Event date & venue
-                    </label>
 
-                    <input
-                        id="eventDate"
-                        type="text"
-                        placeholder="All week · 4 Abbeyway Street"
-                        value={eventDate}
-                        onChange={(e) => setEventDate(e.target.value)}
-                        className="form-input"
-                        required
-                        disabled={isPending}
-                    />
-                </div>
 
                 {/* Venue */}
                 <div className="flex flex-col">
                     <label
-                        htmlFor="venue"
+                        htmlFor="location"
                         className="form-label"
                     >
                         Venue
                     </label>
 
                     <input
-                        id="venue"
+                        id="location"
                         type="text"
                         placeholder="Wedding venue"
-                        value={venue}
-                        onChange={(e) => setVenue(e.target.value)}
+                        value={location}
+                        onChange={(e) => setLocation(e.target.value)}
                         className="form-input"
                         disabled={isPending}
                     />
@@ -185,11 +212,11 @@ const OrderForm = ({ templateId }: OrderFormProps) => {
                     </label>
 
                     <textarea
-                        id="notes"
+                        id="note"
                         rows={4}
                         placeholder="Colour tweaks, dress code, RSVP deadline..."
-                        value={notes}
-                        onChange={(e) => setNotes(e.target.value)}
+                        value={note}
+                        onChange={(e) => setNote(e.target.value)}
                         className="form-textarea"
                         disabled={isPending}
                     />
