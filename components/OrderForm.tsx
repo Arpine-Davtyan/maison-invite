@@ -3,6 +3,18 @@
 import { FormEvent, useState, useTransition } from "react";
 import { createOrder } from "@/lib/actions/orders";
 
+import { CalendarIcon } from "lucide-react";
+import { format } from "date-fns";
+import { enUS } from "date-fns/locale";
+
+import { Calendar } from "@/components/ui/calendar";
+import {
+    Popover,
+    PopoverContent,
+    PopoverTrigger,
+} from "@/components/ui/popover";
+
+
 interface OrderFormProps {
     templateId: string;
 }
@@ -12,13 +24,17 @@ const OrderForm = ({ templateId }: OrderFormProps) => {
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
     const [invitationNames, setInvitationNames] = useState("");
-    const [eventDate, setEventDate] = useState("");
+    const [eventDate, setEventDate] = useState<Date | undefined>();
     const [location, setLocation] = useState("");
     const [note, setNote] = useState("");
 
     const [isPending, startTransition] = useTransition();
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState("");
+
+    const formattedEventDate = eventDate
+        ? format(eventDate, "yyyy-MM-dd")
+        : "";
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -32,7 +48,7 @@ const OrderForm = ({ templateId }: OrderFormProps) => {
                     full_name: name,
                     email,
                     phone,
-                    date: eventDate,
+                    date: formattedEventDate,
                     location,
                     invitationNames,
                     note
@@ -75,7 +91,6 @@ const OrderForm = ({ templateId }: OrderFormProps) => {
                 onSubmit={handleSubmit}
                 className="my-5 flex flex-col gap-2"
             >
-                {/* Name + Email */}
                 <div className="grid grid-cols-2 gap-3">
                     <div className="flex flex-col">
                         <label
@@ -96,7 +111,6 @@ const OrderForm = ({ templateId }: OrderFormProps) => {
                         />
                     </div>
 
-                    {/* Event date */}
                     <div className="flex flex-col">
                         <label
                             htmlFor="eventDate"
@@ -105,20 +119,42 @@ const OrderForm = ({ templateId }: OrderFormProps) => {
                             Ամսաթիվ
                         </label>
 
-                        <input
-                            id="eventDate"
-                            type="date"
-                            value={eventDate}
-                            onChange={(e) => setEventDate(e.target.value)}
-                            className="form-input"
-                            required
-                            disabled={isPending}
-                        />
+                        <Popover>
+                            <PopoverTrigger>
+                                <button
+                                    type="button"
+                                    disabled={isPending}
+                                    className="form-input text-left"
+                                >
+                                    <span>
+                                        {eventDate
+                                            ? format(eventDate, "dd.MM.yyyy")
+                                            : ""}
+                                    </span>
+
+                                    <CalendarIcon className="size-4 text-wenge float-end" />
+                                </button>
+                            </PopoverTrigger>
+
+                            <PopoverContent
+                                align="end"
+                                className="w-auto border-wenge bg-ivory p-0"
+                            >
+                                <Calendar
+                                    mode="single"
+                                    selected={eventDate}
+                                    onSelect={setEventDate}
+                                    disabled={(date) =>
+                                        date < new Date(new Date().setHours(0, 0, 0, 0))
+                                    }
+                                    locale={enUS}
+                                />
+                            </PopoverContent>
+                        </Popover>
                     </div>
                 </div>
 
                 <div className="grid grid-cols-2 gap-3">
-                    {/* Phone */}
                     <div className="flex flex-col">
                         <label
                             htmlFor="phone"
@@ -157,7 +193,6 @@ const OrderForm = ({ templateId }: OrderFormProps) => {
                     </div>
                 </div>
 
-                {/* Names on invitation */}
                 <div className="flex flex-col">
                     <label
                         htmlFor="invitationNames"
@@ -179,9 +214,6 @@ const OrderForm = ({ templateId }: OrderFormProps) => {
                     />
                 </div>
 
-
-
-                {/* Venue */}
                 <div className="flex flex-col">
                     <label
                         htmlFor="location"
