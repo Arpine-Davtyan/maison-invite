@@ -77,7 +77,7 @@
   }
 
   h1 {
-    @apply max-w-200 text-5xl sm:text-6xl text-ink justify-center text-center font-cormorant-garamond;
+    @apply max-w-200 text-5xl sm:text-6xl text-ink justify-center text-center font-cormorant-garamond leading-normal;
   }
 
   h2 {
