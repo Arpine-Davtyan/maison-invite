@@ -52,7 +52,7 @@
 }
 
 @utility form-label {
-  @apply mb-2 text-xs font-medium uppercase tracking-[2px] text-wenge;
+  @apply mb-2 text-[10px] font-medium uppercase tracking-[2px] text-wenge;
 }
 
 @utility form-input {
@@ -77,11 +77,11 @@
   }
 
   h1 {
-    @apply max-w-200 text-6xl text-ink justify-center text-center font-cormorant-garamond;
+    @apply max-w-200 text-5xl sm:text-6xl text-ink justify-center text-center font-cormorant-garamond;
   }
 
   h2 {
-    @apply text-4xl text-ink font-cormorant-garamond;
+    @apply text-2xl sm:text-3xl text-ink font-cormorant-garamond;
   }
 
   h3 {
@@ -93,7 +93,7 @@
   }
   
   h6 {
-    @apply text-xs text-gold uppercase font-semibold tracking-[3px];
+    @apply text-[10px] text-gold uppercase font-semibold tracking-[3px];
   }
 
   footer {
@@ -107,7 +107,7 @@
   }
 
   .simple-text {
-    @apply text-[16px] text-wenge max-w-xl text-center;
+    @apply text-sm text-wenge max-w-xl text-center;
   }
 
   .title-box {
@@ -137,15 +137,6 @@
   .price {
     @apply text-lg text-gold font-cormorant-garamond;
   }
-
-
-
-
-
-
-
-
-
   
 }
 

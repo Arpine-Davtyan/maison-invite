@@ -59,11 +59,11 @@ const OrderForm = ({ templateId }: OrderFormProps) => {
                 </div>
 
                 <h3 className="mb-3">
-                    Your order has been received
+                    Պատվերը հաստատված է
                 </h3>
 
                 <p className="simple-text max-w-md">
-                    Thank you, {name}. We'll review your details and contact you shortly to confirm everything.
+                    Շնորհակալություն, {name}. Շուտով կապ կհաստատատենք Ձեզ հետ մանրամասների հաստատման համար.
                 </p>
             </div>
         );
@@ -73,7 +73,7 @@ const OrderForm = ({ templateId }: OrderFormProps) => {
         <div>
             <form
                 onSubmit={handleSubmit}
-                className="my-5 flex flex-col gap-3"
+                className="my-5 flex flex-col gap-2"
             >
                 {/* Name + Email */}
                 <div className="grid grid-cols-2 gap-3">
@@ -82,7 +82,7 @@ const OrderForm = ({ templateId }: OrderFormProps) => {
                             htmlFor="name"
                             className="form-label"
                         >
-                            Your name
+                            Անուն Ազգանուն
                         </label>
 
                         <input
@@ -102,7 +102,7 @@ const OrderForm = ({ templateId }: OrderFormProps) => {
                             htmlFor="eventDate"
                             className="form-label"
                         >
-                            Event date
+                            Ամսաթիվ
                         </label>
 
                         <input
@@ -124,7 +124,7 @@ const OrderForm = ({ templateId }: OrderFormProps) => {
                             htmlFor="phone"
                             className="form-label"
                         >
-                            Phone
+                            Հեռախոս
                         </label>
 
                         <input
@@ -142,7 +142,7 @@ const OrderForm = ({ templateId }: OrderFormProps) => {
                             htmlFor="email"
                             className="form-label"
                         >
-                            Email
+                            Էլ․ հասցե
                         </label>
 
                         <input
@@ -163,13 +163,12 @@ const OrderForm = ({ templateId }: OrderFormProps) => {
                         htmlFor="invitationNames"
                         className="form-label"
                     >
-                        Names on the invitation
+                        Հրավիրատոմսի Անուններ
                     </label>
 
                     <input
                         id="invitationNames"
                         type="text"
-                        placeholder="Studio Open House"
                         value={invitationNames}
                         onChange={(e) =>
                             setInvitationNames(e.target.value)
@@ -188,13 +187,12 @@ const OrderForm = ({ templateId }: OrderFormProps) => {
                         htmlFor="location"
                         className="form-label"
                     >
-                        Venue
+                        Վայրը
                     </label>
 
                     <input
                         id="location"
                         type="text"
-                        placeholder="Wedding venue"
                         value={location}
                         onChange={(e) => setLocation(e.target.value)}
                         className="form-input"
@@ -208,13 +206,12 @@ const OrderForm = ({ templateId }: OrderFormProps) => {
                         htmlFor="notes"
                         className="form-label"
                     >
-                        Anything else (optional)
+                        Այլ մանրամասներ
                     </label>
 
                     <textarea
                         id="note"
                         rows={4}
-                        placeholder="Colour tweaks, dress code, RSVP deadline..."
                         value={note}
                         onChange={(e) => setNote(e.target.value)}
                         className="form-textarea"
@@ -233,12 +230,12 @@ const OrderForm = ({ templateId }: OrderFormProps) => {
                     className="btn-submit"
                     disabled={isPending}
                 >
-                    {isPending ? "Placing order..." : "Place order"}
+                    Պատվիրել
                 </button>
             </form>
 
             <p className="simple-text">
-                No payment is taken here yet — we confirm details first.
+                Այս պահին վճարում չի պահանջվում։ Մենք նախ կհաստատենք պատվերի մանրամասները։
             </p>
         </div>
     );

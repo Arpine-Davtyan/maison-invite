@@ -47,14 +47,12 @@ const Order = async ({ params }: OrderPageProps) => {
                     </div>
 
                     <div className="space-y-4">
-                        <h6>Place your order</h6>
+                        <h6>Պատվիրել հրավիրատոմս</h6>
 
-                        <h2>Tell us whose day it is</h2>
+                        <h2>Պատմեք մեզ Ձեր օրվա մասին</h2>
 
                         <p className="simple-text text-left">
-                            We personalise the design with your details and
-                            send back a private link you can share with your
-                            guests.
+                            Մենք կպատրաստենք հրավիրատոմսը ձեր տվյալներով և կուղարկենք անձնական հղումը, որով կարող եք կիսվել ձեր հյուրերի հետ։
                         </p>
 
                         <OrderForm templateId={item.id} />
