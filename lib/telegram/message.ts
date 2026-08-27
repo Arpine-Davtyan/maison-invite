@@ -17,6 +17,8 @@ export async function sendOrderTelegram(data: CreateOrderInput) {
   const text = `
 <b>🔔 Նոր պատվեր</b>
 
+${data.template_id ?? ""}
+
 <b>Անուն:</b> ${data.full_name ?? ""}
 <b>Հեռախոս:</b> ${data.phone ?? ""}
 <b>Email:</b> ${data.email ?? ""}
