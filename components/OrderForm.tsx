@@ -120,21 +120,21 @@ const OrderForm = ({ templateId }: OrderFormProps) => {
                         </label>
 
                         <Popover>
-                            <PopoverTrigger>
-                                <button
-                                    type="button"
-                                    disabled={isPending}
-                                    className="form-input text-left"
-                                >
-                                    <span>
+                            <PopoverTrigger
+                                render={
+                                    <button
+                                        type="button"
+                                        disabled={isPending}
+                                        className="form-input text-left"
+                                    >
                                         {eventDate
                                             ? format(eventDate, "dd.MM.yyyy")
                                             : ""}
-                                    </span>
 
-                                    <CalendarIcon className="size-4 text-wenge float-end" />
-                                </button>
-                            </PopoverTrigger>
+                                        <CalendarIcon className="size-4 text-wenge float-end" />
+                                    </button>
+                                }
+                            />
 
                             <PopoverContent
                                 align="end"

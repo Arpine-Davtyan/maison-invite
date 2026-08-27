@@ -1,40 +1,8 @@
 "use server";
 
 import { supabase } from "@/lib/supabase";
-
-export type Order = {
-    id: string;
-    template_id: string | null;
-    full_name: string | null;
-    phone: string | null;
-    date: string;
-    created_at: string | null;
-    email: string | null;
-};
-
-export type OrderWithTemplate = Order & {
-    templates: {
-        id: string;
-        title: string | null;
-        category: string | null;
-        code: string | null;
-        price: number | null;
-        url: string | null;
-    } | null;
-};
-
-export type CreateOrderInput = {
-    template_id?: string | null;
-    full_name?: string;
-    phone?: string;
-    date: string;
-    email?: string;
-    note?: string;
-    location?: string;
-    invitationNames?: string;
-};
-
-export type UpdateOrderInput = Partial<CreateOrderInput>;
+import { CreateOrderInput, Order, OrderWithTemplate, UpdateOrderInput } from "../types/order";
+import { sendOrderTelegram } from "../telegram/message";
 
 export async function createOrder(data: CreateOrderInput) {
     const { data: order, error } = await supabase
@@ -52,9 +20,20 @@ export async function createOrder(data: CreateOrderInput) {
         .select()
         .single();
 
-    if (error) {
-        console.error("createOrder error:", error);
-        throw new Error(error.message);
+    try {
+        const telegramResult = await sendOrderTelegram(data);
+
+        if (!telegramResult.success) {
+            console.error(
+                "Order created, but Telegram failed:",
+                telegramResult.error
+            );
+        }
+    } catch (error) {
+        console.error(
+            "Order created, but Telegram request failed:",
+            error
+        );
     }
 
     return order as Order;
