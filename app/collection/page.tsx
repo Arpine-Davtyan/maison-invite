@@ -4,9 +4,9 @@ const Collection = () => {
     return (
         <section id="collection" className="section">
             <div className="container flex-col">
-                <h6>Հրավիրատոմսեր</h6>
+                <h6>Հավաքածու</h6>
                 <div className="title-box">
-                    <h2>Ձեր ընտրությունը</h2>
+                    <h2>Gilded Vows</h2>
                     <span className="rule-gold"></span>
                 </div>
                <CollectionCards />

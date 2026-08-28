@@ -14,7 +14,7 @@ const Hero = () => {
                 onClick={scrollCollection}
                 className="btn-dark"
             >
-                Դիտել Հրավիրատոմսեր
+                Դիտել Հրավիրատոմսերը
             </button>
         </div>
     )
