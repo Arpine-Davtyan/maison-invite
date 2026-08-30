@@ -131,7 +131,7 @@
   }
 
   .card-description {
-    @apply text-sm text-wenge mt-0.5;
+    @apply text-xs uppercase font-semibold text-wenge mt-1;
   }
 
   .price {

@@ -11,6 +11,7 @@ export type Template = {
     description: string | null;
     price: number | null;
     url: string | null;
+    collection: string | null;
 };
 
 export type CreateTemplateInput = {

@@ -18,15 +18,16 @@ const CollectionCards = async () => {
                         </div>
                     </div>
 
-                    <div className="flex justify-between p-3 border-b border-beige">
+                    <div className="flex justify-between items-center p-3 border-b border-beige">
                         <div>
-                            <h3>{item.title}</h3>
+                            {/* <h3>{item.title}</h3> */}
                             <p className="card-description">
-                                {item.description}
+                                {item.collection}-{item.code}
+                                {/* {item.description} */}
                             </p>
                         </div>
 
-                        <div className="flex justify-end py-3">
+                        <div className="flex justify-end items-center">
                             <span className="price">
                                 {Number(item.price).toLocaleString("hy-AM")} ֏
                             </span>

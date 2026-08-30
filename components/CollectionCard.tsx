@@ -18,10 +18,11 @@ const CollectionCard = ({ item }: CollectionCardProps) => {
             </div>
 
             <div className="flex flex-col p-3 border-b border-beige">
-                <h3>{item.title}</h3>
+                {/* <h3>{item.title}</h3> */}
 
                 <p className="card-description">
-                    {item.description}
+                    {item.collection}-{item.code}
+                    {/* {item.description} */}
                 </p>
             </div>
 
