@@ -6,6 +6,7 @@ export type Order = {
     date: string;
     created_at: string | null;
     email: string | null;
+    promo_id: string | null;
 };
 
 export type OrderWithTemplate = Order & {
@@ -17,6 +18,15 @@ export type OrderWithTemplate = Order & {
         price: number | null;
         url: string | null;
     } | null;
+
+    promo_codes: {
+        id: string;
+        code: string;
+        discount_percent: number | null;
+        commission_percent: number | null;
+        partner_name: string;
+        insta_link: string | null;
+    } | null;
 };
 
 export type CreateOrderInput = {
@@ -25,6 +35,7 @@ export type CreateOrderInput = {
     phone?: string;
     date: string;
     email?: string;
+    promo_code?: string | null;
     note?: string;
     location?: string;
     invitationNames?: string;

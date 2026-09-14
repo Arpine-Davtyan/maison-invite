@@ -3,8 +3,20 @@
 import { supabase } from "@/lib/supabase";
 import { CreateOrderInput, Order, OrderWithTemplate, UpdateOrderInput } from "../types/order";
 import { sendOrderTelegram } from "../telegram/message";
+import { getPromoCode } from "./promoCodes";
 
 export async function createOrder(data: CreateOrderInput) {
+    let promo = null;
+
+    if (data.promo_code?.trim()) {
+        const normalizedPromoCode = data.promo_code.trim().toUpperCase();
+        promo = await getPromoCode(normalizedPromoCode);
+
+        if (!promo) {
+            throw new Error("Պրոմո կոդը սխալ է կամ այլևս ակտիվ չէ։");
+        }
+    }
+
     const { data: order, error } = await supabase
         .from("orders")
         .insert({
@@ -16,12 +28,21 @@ export async function createOrder(data: CreateOrderInput) {
             note: data.note ?? null,
             location: data.location ?? null,
             invitationNames: data.invitationNames ?? null,
+            promo_id: promo?.id ?? null,
         })
         .select()
         .single();
 
+    if (error) {
+        console.error("createOrder error:", error);
+        throw new Error(error.message);
+    }
+
     try {
-        const telegramResult = await sendOrderTelegram(data);
+        const telegramResult = await sendOrderTelegram({
+            ...data,
+            promo_code: promo?.code ?? null,
+        });
 
         if (!telegramResult.success) {
             console.error(

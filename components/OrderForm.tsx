@@ -14,7 +14,6 @@ import {
     PopoverTrigger,
 } from "@/components/ui/popover";
 
-
 interface OrderFormProps {
     templateId: string;
 }
@@ -27,10 +26,13 @@ const OrderForm = ({ templateId }: OrderFormProps) => {
     const [eventDate, setEventDate] = useState<Date | undefined>();
     const [location, setLocation] = useState("");
     const [note, setNote] = useState("");
+    const [promoCode, setPromoCode] = useState("");
 
     const [isPending, startTransition] = useTransition();
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState("");
+
+    const [calendarOpen, setCalendarOpen] = useState(false);
 
     const formattedEventDate = eventDate
         ? format(eventDate, "yyyy-MM-dd")
@@ -51,7 +53,8 @@ const OrderForm = ({ templateId }: OrderFormProps) => {
                     date: formattedEventDate,
                     location,
                     invitationNames,
-                    note
+                    note,
+                    promo_code: promoCode || null,
                 });
 
                 setSuccess(true);
@@ -119,7 +122,7 @@ const OrderForm = ({ templateId }: OrderFormProps) => {
                             Ամսաթիվ
                         </label>
 
-                        <Popover>
+                        <Popover open={calendarOpen} onOpenChange={setCalendarOpen}>
                             <PopoverTrigger
                                 render={
                                     <button
@@ -143,9 +146,15 @@ const OrderForm = ({ templateId }: OrderFormProps) => {
                                 <Calendar
                                     mode="single"
                                     selected={eventDate}
-                                    onSelect={setEventDate}
+                                    onSelect={(date) => {
+                                        setEventDate(date);
+                                        setCalendarOpen(false);
+                                    }}
                                     disabled={(date) =>
-                                        date < new Date(new Date().setHours(0, 0, 0, 0))
+                                        date <
+                                        new Date(
+                                            new Date().setHours(0, 0, 0, 0)
+                                        )
                                     }
                                     locale={enUS}
                                 />
@@ -173,6 +182,7 @@ const OrderForm = ({ templateId }: OrderFormProps) => {
                             disabled={isPending}
                         />
                     </div>
+
                     <div className="flex flex-col">
                         <label
                             htmlFor="email"
@@ -227,6 +237,26 @@ const OrderForm = ({ templateId }: OrderFormProps) => {
                         type="text"
                         value={location}
                         onChange={(e) => setLocation(e.target.value)}
+                        className="form-input"
+                        disabled={isPending}
+                    />
+                </div>
+
+                <div className="flex flex-col">
+                    <label
+                        htmlFor="promoCode"
+                        className="form-label"
+                    >
+                        Պրոմո կոդ
+                    </label>
+
+                    <input
+                        id="promoCode"
+                        type="text"
+                        value={promoCode}
+                        onChange={(e) =>
+                            setPromoCode(e.target.value.toUpperCase())
+                        }
                         className="form-input"
                         disabled={isPending}
                     />
