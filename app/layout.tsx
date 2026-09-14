@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     siteName: "Maison INVITE",
     images: [
       {
-        url: "https://maisoninvite.vercel.app/og-image.png",
+        url: "https://maisoninvite.vercel.app/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Maison INVITE",
